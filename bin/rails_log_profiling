@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+#coding: utf-8
+
+require 'rubygems'
+require 'thor'
+
+$LOAD_PATH.unshift(File.dirname(File.realpath(__FILE__)) + '/../lib')
+require 'rails_log_profiling'
+
+class Command < Thor
+  default_command :rails_log_profiling
+
+  desc 'rails_log_profiling', 'an rails_log_profiling task'
+  def rails_log_profiling
+    Rails::Log::Profiling::Execute.run
+  end
+end
+
+Command.start

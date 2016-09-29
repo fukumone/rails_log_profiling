@@ -1,5 +1,3 @@
-require "rails/log/profiling/version"
-
 module Rails
   module Log
     module Profiling
