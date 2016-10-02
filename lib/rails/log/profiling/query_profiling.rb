@@ -1,7 +1,6 @@
 module Rails::Log::Profiling
   class QueryProfiling
     def self.run
-      # カレントパス
       current_path = `pwd`.chomp
       file_content = File.read("#{current_path}/log/development.log")
 

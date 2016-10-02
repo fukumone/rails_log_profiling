@@ -12,11 +12,15 @@ class Command < Thor
 
   desc 'rails_log_profiling', 'an rails_log_profiling task'
   method_option :query_profiling, aliases: '-q', desc: 'query profiling'
+  method_option :view_profiling, aliases: '-v', desc: 'view profiling'
 
   def rails_log_profiling
     if options[:query_profiling]
       Rails::Log::Profiling::QueryProfiling.run
+    elsif options[:view_profiling]
+      Rails::Log::Profiling::ViewProfiling.run
     else
+      # TODO:オプションがない場合はコマンドラインの説明を表記する
       puts "here"
     end
   end
