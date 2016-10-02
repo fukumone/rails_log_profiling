@@ -11,8 +11,8 @@ class Command < Thor
   default_command :rails_log_profiling
 
   desc 'rails_log_profiling', 'an rails_log_profiling task'
-  method_option :query_profiling, aliases: '-q', desc: 'query profiling'
-  method_option :view_profiling, aliases: '-v', desc: 'view profiling'
+  method_option :query_profiling, :aliases => '-q', :desc => "Query profiling"
+  method_option :view_profiling, :aliases => '-v', :desc => "View profiling"
 
   def rails_log_profiling
     if options[:query_profiling]
