@@ -4,14 +4,14 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'rails/log/profiling/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "rails-log-profiling"
+  spec.name          = "rails_log_profiling"
   spec.version       = Rails::Log::Profiling::VERSION
   spec.authors       = ["fukumone"]
   spec.email         = ["fukuimone@gmail.com"]
 
   spec.summary       = %q{Rails log profiling}
   spec.description   = %q{Rails log profiling}
-  spec.homepage      = "https://github.com/fukumone/rails-log-profiling.git"
+  spec.homepage      = "https://github.com/fukumone/rails_log_profiling.git"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
