@@ -15,9 +15,6 @@ module Rails
           f.binmode
           f.sync = true
           Rails::Log::Profiling.logger = ActiveSupport::Logger.new f
-          # Rails::Log::Profiling.logger.formatter = ::Logger::Formatter.new
-          # Rails::Log::Profiling.logger = ActiveSupport::TaggedLogging.new(Rails::Log::Profiling.logger)
-          Rails::Log::Profiling.match_paths = [/#{Regexp.quote(Rails.root.join("app").to_s)}/]
         end
       end
     end

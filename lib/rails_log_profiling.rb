@@ -15,11 +15,7 @@ module Rails
         ""
       end
 
-      config_accessor :match_paths, instance_accessor: false do
-        []
-      end
-
-      config_accessor :sqls, instance: false, instance_accessor: false  do
+      config_accessor :sqls, instance_accessor: false  do
         []
       end
 
