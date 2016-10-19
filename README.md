@@ -6,9 +6,13 @@ Rails専用のパフォーマンスツール
  - メソッドの実行箇所を表示
 
 TODO:
-  - クエリプロファイリング機能追加
-  - Viewプロファイル機能追加
-  - メソッドの実行箇所を記録
+  - Beta1
+    - クエリプロファイリング機能追加
+  - Beta2
+    - Viewプロファイル機能追加
+    - メソッドの実行箇所検知機能追加
+  - Beta3
+    - Rails3.2、Rails4.0、Rails4.1、Rails4.2、Rails5.0正式サポート
 
 ## Installation
 
@@ -21,11 +25,6 @@ gem install rails_log_profiling
 ## Usage
   Gemをインストールした状態でRails Serverを起動
   log/以下にログファイルが作られ、記録されます
-
-## Support Version
- - Rails5.0
- - Rails4.1
- - Rails3.2
 
 ## Inspire
  - [rack-mini-profiler](https://github.com/MiniProfiler/rack-mini-profiler)
