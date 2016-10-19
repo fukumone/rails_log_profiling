@@ -1,37 +1,33 @@
 # Rails::Log::Profiling
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rails/log/profiling`. To experiment with that code, run `bin/console` for an interactive prompt.
+Rails専用のパフォーマンスツール
+ - クエリプロファイリング：クエリを降順、昇順に整理してログに出力
+ - Viewプロファイリング：view、レンダリングにかかったページを降順、昇順に整理してログに出力
+ - メソッドの実行箇所を表示
 
-TODO: Delete this and the text above, and describe your gem
+TODO:
+  - クエリプロファイリング機能追加
+  - Viewプロファイル機能追加
+  - メソッドの実行箇所を記録
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
 ```ruby
 gem 'rails_log_profiling'
+# or
+gem install rails_log_profiling
 ```
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install rails_log_profiling
-
 ## Usage
+  Gemをインストールした状態でRails Serverを起動
+  log/以下にログファイルが作られ、記録されます
 
-TODO: Write usage instructions here
+## Support Version
+ - Rails5.0
+ - Rails4.1
+ - Rails3.2
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rails_log_profiling.
-
-# rails_log_profiling
+## Inspire
+ - [rack-mini-profiler](https://github.com/MiniProfiler/rack-mini-profiler)
+ - [Activerecord::Cause](https://github.com/joker1007/activerecord-cause)
+ - [Bullet](https://github.com/flyerhzm/bullet)
