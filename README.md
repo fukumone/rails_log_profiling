@@ -16,10 +16,15 @@ TODO:
 
 ## Installation
 
+- gemとしてインストール
+
 ```
-# gemとしてインストール
 gem install rails_log_profiling
-# gemfileに追加
+```
+
+- gemfileに追加
+
+```
 gem 'rails_log_profiling', :group => "development"
 ```
 

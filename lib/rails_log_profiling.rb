@@ -19,7 +19,11 @@ module Rails
         []
       end
 
-      if defined?(Rails)
+      config_accessor :enable, instance_accessor: false do
+        true
+      end
+
+      if defined?(Rails) && Rails::Log::Profiling.enable
         class Railtie < ::Rails::Railtie
           initializer "rails_log_profiling.configure_rails_initialization" do
             ::Rails::Log::Profiling::Logger.run
@@ -29,6 +33,7 @@ module Rails
 
       class QueryLogSubscriber < ActiveRecord::LogSubscriber
         def sql(event)
+          return unless Rails::Log::Profiling.enable
           return unless Rails::Log::Profiling.logger.debug?
           payload = event.payload
 
@@ -102,11 +107,13 @@ if defined?(Rails)
 
       private
         def controller_action_message
+          return unless Rails::Log::Profiling.enable
           controller_name = params[:controller].split("_").map(&:capitalize).join
           Rails::Log::Profiling.logger.info("\n \033[36m #{controller_name}Controller##{params[:action]}")
         end
 
         def logger_execute
+          return unless Rails::Log::Profiling.enable
           Rails::Log::Profiling.logger.info("\n \033[36m" + Rails::Log::Profiling.sqls.count.to_s + "件のクエリの検知")
           Rails::Log::Profiling::QueryProfiling.execute
         end
@@ -115,5 +122,6 @@ if defined?(Rails)
 end
 
 ActiveSupport.on_load(:active_record) do
+  return unless Rails::Log::Profiling.enable
   Rails::Log::Profiling::QueryLogSubscriber.attach_to :active_record
 end
