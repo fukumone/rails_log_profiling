@@ -1,5 +1,27 @@
 sudo: false
 language: ruby
 rvm:
+  - 2.1
+  - 2.2
+  - 2.3.0
   - 2.3.1
-before_install: gem install bundler -v 1.13.1
+before_install:
+  - gem install bundler
+gemfile:
+  - gemfiles/Gemfile.rails.5.0
+  - gemfiles/Gemfile.rails.4.2
+  - gemfiles/Gemfile.rails.4.1
+  - gemfiles/Gemfile.rails.4.0
+  - gemfiles/Gemfile.rails.3.2
+script: "bundle exec rake spec"
+
+matrix:
+  exclude:
+  - rvm: 2.1
+    gemfile: gemfiles/Gemfile.rails.5.0
+  - rvm: 2.2
+    gemfile: gemfiles/Gemfile.rails.5.0
+  - rvm: 2.3.0
+    gemfile: gemfiles/Gemfile.rails.3.2
+  - rvm: 2.3.1
+    gemfile: gemfiles/Gemfile.rails.3.2
