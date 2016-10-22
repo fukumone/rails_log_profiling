@@ -13,7 +13,11 @@ module Rails
 
         protected
           def self.query_sort
-            Rails::Log::Profiling.sqls.sort! { |a, b| b[0] <=> a[0] }
+            if Rails::Log::Profiling.sort_order == "desc"
+              Rails::Log::Profiling.sqls.sort! { |a, b| b[0] <=> a[0] }
+            else # sort_order asc
+              Rails::Log::Profiling.sqls.sort!
+            end
           end
       end
     end

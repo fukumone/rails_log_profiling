@@ -23,6 +23,10 @@ module Rails
         true
       end
 
+      config_accessor :sort_order, instance_accessor: false do
+        "desc"
+      end
+
       if defined?(Rails) && Rails::Log::Profiling.enable
         class Railtie < ::Rails::Railtie
           initializer "rails_log_profiling.configure_rails_initialization" do

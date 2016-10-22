@@ -26,8 +26,17 @@ describe Rails::Log::Profiling::QueryProfiling do
     expect(Rails::Log::Profiling.sqls).to eq([])
   end
 
-  it '.query_sort(クエリをソートする)' do
-    expect(Rails::Log::Profiling::QueryProfiling.query_sort).to eq(
-      [[500, "test"], [100, "test"], [10, "test"], [3, "test"]])
+  describe '.query_sort' do
+
+    it 'desc順に並べる'do
+      expect(Rails::Log::Profiling::QueryProfiling.query_sort).to eq(
+        [[500, "test"], [100, "test"], [10, "test"], [3, "test"]])
+    end
+
+    it 'asc順に並べる' do
+      Rails::Log::Profiling.sort_order = "asc"
+      expect(Rails::Log::Profiling::QueryProfiling.query_sort).to eq(
+        [[3, "test"], [10, "test"], [100, "test"], [500, "test"]])
+    end
   end
 end
