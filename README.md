@@ -1,5 +1,7 @@
 # Rails::Log::Profiling
 
+![Build Status](https://travis-ci.org/fukumone/rails_log_profiling.svg)
+
 Rails専用のパフォーマンスツール
  - クエリプロファイリング：クエリを降順、昇順に整理してログに出力
  - Viewプロファイリング：view、レンダリングにかかったページを降順、昇順に整理してログに出力
@@ -12,7 +14,7 @@ TODO:
     - Viewプロファイル機能追加
     - メソッドの実行箇所検知機能追加
   - Beta3
-    - Rails3.2、Rails4.0、Rails4.1、Rails4.2、Rails5.0正式サポート
+    - Rails4.0、Rails4.1、Rails4.2、Rails5.0正式サポート
 
 ## Installation
 
