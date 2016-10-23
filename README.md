@@ -1,6 +1,7 @@
 # Rails::Log::Profiling
 
 ![Build Status](https://travis-ci.org/fukumone/rails_log_profiling.svg)
+[![Gem Version](https://badge.fury.io/rb/rails_log_profiling.svg)](http://badge.fury.io/rb/rails_log_profiling)
 
 Rails専用のパフォーマンスツール
  - クエリプロファイリング：クエリを降順、昇順に整理してログに出力
