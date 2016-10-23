@@ -21,13 +21,13 @@ TODO:
 - gemとしてインストール
 
 ```
-$ gem install rails_log_profiling
+$ gem install rails_log_profiling --pre
 ```
 
 - gemfileに追加
 
 ```
-gem 'rails_log_profiling', :group => "development"
+gem 'rails_log_profiling', '~> 1.0.0.beta1', :group => "development"
 ```
 
 ## Usage
