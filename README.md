@@ -21,7 +21,7 @@ TODO:
 - gemとしてインストール
 
 ```
-gem install rails_log_profiling
+$ gem install rails_log_profiling
 ```
 
 - gemfileに追加
@@ -33,6 +33,30 @@ gem 'rails_log_profiling', :group => "development"
 ## Usage
   Gemをインストールした状態でRails Serverを起動
   log/以下にログファイルが作られ、記録されます
+
+```
+$ tail -f log/rails_log_profiling.log
+
+# output
+  PostsController#index
+
+  2件のクエリの検知
+  1:  Post Load (1.4ms)  SELECT `posts`.* FROM `posts`
+
+  2:  Article Load (0.8ms)  SELECT  `articles`.* FROM `articles` ORDER BY `articles`.`id` ASC LIMIT 1
+```
+
+## Configuration
+Rails::Log::Profilingは初期の段階ではなにも行いません、動作させるには
+config/environments/development.rbに下記の設定を追加してください
+
+```:devlopment.rb
+Rails::Log::Profiling.enable = true
+```
+
+Rails::Log::Profilingはオプションが用意されています
+  - `Rails::Log::Profiling.enable`： true => Rails::Log::Profilingを有効にする
+  - `Rails::Log::Profiling.sort_order`: クエリを並び順設定、降順の場合はdesc、昇順の場合はasc、初期設定はdesc
 
 ## Inspire
  - [rack-mini-profiler](https://github.com/MiniProfiler/rack-mini-profiler)
