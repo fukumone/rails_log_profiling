@@ -56,9 +56,20 @@ Rails::Log::Profiling.enable = true
 
 Rails::Log::Profilingはオプションが用意されています
   - `Rails::Log::Profiling.enable`： true => Rails::Log::Profilingを有効にする
-  - `Rails::Log::Profiling.sort_order`: クエリを並び順設定、降順の場合はdesc、昇順の場合はasc、初期設定はdesc
+  - `Rails::Log::Profiling.sort_order`: クエリの並び順を指定する、降順はdesc、昇順はascと設定してください。初期設定はdescになっています
 
 ## Inspire
  - [rack-mini-profiler](https://github.com/MiniProfiler/rack-mini-profiler)
  - [Activerecord::Cause](https://github.com/joker1007/activerecord-cause)
  - [Bullet](https://github.com/flyerhzm/bullet)
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+## License
+MIT

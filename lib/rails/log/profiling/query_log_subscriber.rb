@@ -64,3 +64,7 @@ module Rails::Log::Profiling
       end
   end
 end
+
+ActiveSupport.on_load(:active_record) do
+  Rails::Log::Profiling::QueryLogSubscriber.attach_to :active_record
+end

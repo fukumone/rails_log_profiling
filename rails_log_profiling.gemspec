@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["fukumone"]
   spec.email         = ["fukuimone@gmail.com"]
 
-  spec.summary       = %q{Rails log profiling}
-  spec.description   = %q{Rails log profiling}
+  spec.summary       = %q{Rails専用のログプロファイリング}
+  spec.description   = %q{Rails専用のログプロファイリング}
   spec.homepage      = "https://github.com/fukumone/rails_log_profiling.git"
   spec.license       = "MIT"
 

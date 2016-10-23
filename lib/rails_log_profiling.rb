@@ -38,9 +38,3 @@ module Rails
     end
   end
 end
-
-ActiveSupport.on_load(:active_record) do
-  if Rails::Log::Profiling.enable
-    Rails::Log::Profiling::QueryLogSubscriber.attach_to :active_record
-  end
-end
