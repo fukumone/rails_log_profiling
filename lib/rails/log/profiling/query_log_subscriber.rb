@@ -16,7 +16,6 @@ module Rails::Log::Profiling
     end
 
     private
-
       def ar_ver_5(event)
         payload = event.payload
         name  = "#{payload[:name]} (#{event.duration.round(1)}ms)"
@@ -30,8 +29,10 @@ module Rails::Log::Profiling
         name = colorize_payload_name(name, payload[:name])
         sql  = color(sql, sql_color(sql), true)
 
+        locations = get_locations
+
         if !name.match(/.*ActiveRecord::SchemaMigration.*/) && name.match(/.*Load.\(.*ms\).*/)
-          Rails::Log::Profiling.sqls << [ "#{event.duration.round(1)}".to_f, "  #{name}  #{sql}#{binds}"]
+          Rails::Log::Profiling.sqls << [ "#{event.duration.round(1)}".to_f, "  #{name}  #{sql}#{binds}\n#{locations}"]
         end
       end
 
@@ -58,9 +59,21 @@ module Rails::Log::Profiling
           name = color(name, MAGENTA, true)
         end
 
+        locations = get_locations
+
         if !name.match(/.*ActiveRecord::SchemaMigration.*/) && name.match(/.*Load.\(.*ms\).*/)
-          Rails::Log::Profiling.sqls << [ "#{event.duration.round(1)}".to_f, "  #{name}  #{sql}#{binds}" ]
+          Rails::Log::Profiling.sqls << [ "#{event.duration.round(1)}".to_f, "  #{name}  #{sql}#{binds}\n #{locations}" ]
         end
+      end
+
+      def get_locations
+        ans = ""
+        caller.each do |val|
+          if val =~ /#{Rails::Log::Profiling.current_path}/
+            ans += val
+          end
+        end
+        ans
       end
   end
 end

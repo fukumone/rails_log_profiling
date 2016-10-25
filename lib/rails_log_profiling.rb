@@ -21,6 +21,10 @@ module Rails
         "desc"
       end
 
+      config_accessor :current_path, instance_accessor: false do
+        ""
+      end
+
       if defined?(Rails)
         class Railtie < ::Rails::Railtie
           initializer "rails_log_profiling.configure_rails_initialization" do
