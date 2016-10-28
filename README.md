@@ -28,11 +28,18 @@ $ gem install rails_log_profiling --pre
 - gemfileに追加
 
 ```
-gem 'rails_log_profiling', '~> 0.2.0.beta1', :group => "development"
+gem 'rails_log_profiling', '~> 0.1.0.beta2', :group => "development"
 ```
 
 ## Usage
-  Gemをインストールした状態でRails Serverを起動
+  Rails::Log::Profilingは初期の段階ではなにも行いません、動作させるには
+config/environments/development.rbに下記の設定を追加してください
+
+  ```:devlopment.rb
+  Rails::Log::Profiling.enable = true
+  ```
+
+  設定後、Rails Serverを起動
   log/以下にログファイルが作られ、記録されます
 
 ```
@@ -42,19 +49,18 @@ $ tail -f log/rails_log_profiling.log
   PostsController#index
 
   2件のクエリの検知
-  1:  Post Load (1.4ms)  SELECT `posts`.* FROM `posts`
 
-  2:  Article Load (0.8ms)  SELECT  `articles`.* FROM `articles` ORDER BY `articles`.`id` ASC LIMIT 1
+  1:  Post Load (3.7ms)  SELECT `posts`.* FROM `posts`
+ Identify Query Location::
+ /Users/fukumone/private_repo/rails_test/app/views/posts/index.html.erb:16:in `_app_views_posts_index_html_erb___191904507552904544_70102088595360'
+
+
+  2:  CurationType Load (1.4ms)  SELECT  `curation_types`.* FROM `curation_types` ORDER BY `curation_types`.`id` ASC LIMIT 1
+ Identify Query Location::
+ /Users/fukumone/private_repo/rails_test/app/controllers/posts_controller.rb:9:in `index'
 ```
 
 ## Configuration
-Rails::Log::Profilingは初期の段階ではなにも行いません、動作させるには
-config/environments/development.rbに下記の設定を追加してください
-
-```:devlopment.rb
-Rails::Log::Profiling.enable = true
-```
-
 Rails::Log::Profilingはオプションが用意されています
   - `Rails::Log::Profiling.enable`： true => Rails::Log::Profilingを有効にする
   - `Rails::Log::Profiling.sort_order`: クエリの並び順を指定する、降順はdesc、昇順はascと設定してください。初期設定はdescになっています
