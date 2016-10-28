@@ -12,9 +12,9 @@ TODO:
   - Beta1
     - クエリプロファイリング機能追加
   - Beta2
-    - Viewプロファイル機能追加
     - メソッドの実行箇所検知機能追加
   - Beta3
+    - Viewプロファイル機能追加
     - Rails4.0、Rails4.1、Rails4.2、Rails5.0正式サポート
 
 ## Installation
