@@ -4,19 +4,21 @@ require "active_record/log_subscriber"
 module Rails::Log::Profiling
   class QueryLogSubscriber < ActiveRecord::LogSubscriber
     def sql(event)
+      locations = get_locations
+      return if locations.empty?
       payload = event.payload
 
       return if IGNORE_PAYLOAD_NAMES.include?(payload[:name])
 
       if ActiveRecord.version >= Gem::Version.new("5.0.0.beta")
-        ar_ver_5(event)
+        ar_ver_5(event, locations)
       else
-        ar_ver_4(event)
+        ar_ver_4(event, locations)
       end
     end
 
     private
-      def ar_ver_5(event)
+      def ar_ver_5(event, locations)
         payload = event.payload
         name  = "#{payload[:name]} (#{event.duration.round(1)}ms)"
         sql   = payload[:sql]
@@ -29,14 +31,12 @@ module Rails::Log::Profiling
         name = colorize_payload_name(name, payload[:name])
         sql  = color(sql, sql_color(sql), true)
 
-        locations = get_locations
-
         if !name.match(/.*ActiveRecord::SchemaMigration.*/) && name.match(/.*Load.\(.*ms\).*/)
           Rails::Log::Profiling.sqls << [ "#{event.duration.round(1)}".to_f, "  #{name}  #{sql}#{binds}\n#{locations}"]
         end
       end
 
-      def ar_ver_4(event)
+      def ar_ver_4(event, locations)
         payload = event.payload
         name  = '%s (%.1fms)' % [payload[:name], event.duration]
         sql   = payload[:sql].squeeze(' ')
@@ -59,8 +59,6 @@ module Rails::Log::Profiling
           name = color(name, MAGENTA, true)
         end
 
-        locations = get_locations
-
         if !name.match(/.*ActiveRecord::SchemaMigration.*/) && name.match(/.*Load.\(.*ms\).*/)
           Rails::Log::Profiling.sqls << [ "#{event.duration.round(1)}".to_f, "  #{name}  #{sql}#{binds}\n #{locations}" ]
         end
@@ -68,9 +66,14 @@ module Rails::Log::Profiling
 
       def get_locations
         ans = ""
+        temp = true
         caller.each do |val|
-          if val =~ /#{Rails::Log::Profiling.current_path}/
-            ans += val
+          if val.match(Rails::Log::Profiling.current_path)
+            if temp
+              ans += " \033[36m " + "Identify Query Location:\n"
+              temp = false
+            end
+            ans += " " + val + "\n"
           end
         end
         ans

@@ -5,7 +5,7 @@ module Rails
         def self.run
           require 'fileutils'
           root_path = Rails.root.to_s
-          Rails::Log::Profiling.current_path = root_path
+          Rails::Log::Profiling.current_path = Regexp.quote(root_path)
           FileUtils.mkdir_p(root_path + '/log')
           log_file = root_path + '/log/rails_profiling.log'
           if File.exist?(log_file)
