@@ -28,7 +28,7 @@ $ gem install rails_log_profiling --pre
 - gemfileに追加
 
 ```
-gem 'rails_log_profiling', '~> 0.1.0.beta1', :group => "development"
+gem 'rails_log_profiling', '~> 0.2.0.beta1', :group => "development"
 ```
 
 ## Usage
