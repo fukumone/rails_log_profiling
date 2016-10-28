@@ -70,7 +70,7 @@ module Rails::Log::Profiling
         caller.each do |val|
           if val.match(Rails::Log::Profiling.current_path)
             if temp
-              ans += " \033[36m " + "Identify Query Location:\n"
+              ans += " \033[36mIdentify Query Location:\033[0m\n"
               temp = false
             end
             ans += " " + val + "\n"
