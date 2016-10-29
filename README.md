@@ -22,7 +22,7 @@ TODO:
 - gemとしてインストール
 
 ```
-$ gem install rails_log_profiling --pre
+$ gem install rails_log_profiling -v 0.1.0.beta2 --pre
 ```
 
 - gemfileに追加
