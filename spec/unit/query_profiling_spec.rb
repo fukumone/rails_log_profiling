@@ -4,10 +4,10 @@ describe Rails::Log::Profiling::QueryProfiling do
   before do
     require 'fileutils'
     current_path = `pwd`.chomp
-    @log_file = current_path + '/rails_profiling.log'
+    @log_file = current_path + '/rails_log_query_profiling.log'
     @file = File.open(@log_file, 'a+')
 
-    Rails::Log::Profiling.logger = ActiveSupport::Logger.new @file
+    Rails::Log::Profiling.query_logger = ActiveSupport::Logger.new @file
     @file.binmode
     @file.sync = true
 
