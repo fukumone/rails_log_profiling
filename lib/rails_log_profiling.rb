@@ -30,7 +30,7 @@ module Rails
       end
 
       config_accessor :redering_pages, instance_accessor: false do
-        { parent: "", children: [] }
+        { parent: "", children: {} }
       end
     end
   end
