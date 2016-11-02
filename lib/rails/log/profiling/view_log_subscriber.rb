@@ -23,7 +23,7 @@ module Rails::Log::Profiling
       end
 
       def view_logger_info
-        log = "\033[36mParent: #{Rails::Log::Profiling.redering_pages[:parent][0]}ms \033[0m\n  #{Rails::Log::Profiling.redering_pages[:parent][1]}"
+        log = "\n \033[36mParent: #{Rails::Log::Profiling.redering_pages[:parent][0]}ms \033[0m\n  #{Rails::Log::Profiling.redering_pages[:parent][1]}"
         unless Rails::Log::Profiling.redering_pages[:children].empty?
           partial_time = Rails::Log::Profiling.redering_pages[:children].flatten.inject { |memo, val| memo.to_f + val.to_f }
           log += "\n"
@@ -31,7 +31,7 @@ module Rails::Log::Profiling
 
           Rails::Log::Profiling.redering_pages[:children].each do |child|
             if temp
-              log += "\033[36mChildren: total time: #{partial_time}ms, partial page count: #{Rails::Log::Profiling.redering_pages[:children].count}\033[0m\n  \033[36m#{child[0]}ms:\033[0m #{child[1]}"
+              log += " \033[36mChildren: total time: #{partial_time}ms, partial page count: #{Rails::Log::Profiling.redering_pages[:children].count}\033[0m\n  \033[36m#{child[0]}ms:\033[0m #{child[1]}"
               temp = false
             else
               log += "\n  \033[36m#{child[0]}ms:\033[0m #{child[1]}"
