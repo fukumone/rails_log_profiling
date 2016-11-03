@@ -14,6 +14,6 @@ $LOAD_PATH.unshift(UNIT)
 
 RSpec.configure do |config|
   config.before(:all) do
-    Rails::Log::Profiling.enable = true
+    Rails::Log::Profiling.query_profiling_enable = true
   end
 end
