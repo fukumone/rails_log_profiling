@@ -64,16 +64,17 @@ module Rails::Log::Profiling
         end
       end
 
+      # クエリの実行箇所を表示
       def get_locations
         ans = ""
-        temp = true
         caller.each do |val|
           if val.match(Rails::Log::Profiling.current_path)
-            if temp
-              ans += " \033[36mIdentify Query Location:\033[0m\n"
-              temp = false
-            end
+            ans += " \033[36mIdentify Query Location:\033[0m\n"
             ans += " " + val + "\n"
+            # メソッドの呼び出し状況を検知するのは一回で止める
+            # なぜか？ => 再帰的に探索するため、探知する量が多くなってしまう場合があるため
+            # 別途オプションを設けて最後までメソッドの呼び出し箇所をトレースするかは検討中
+            break
           end
         end
         ans
