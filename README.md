@@ -24,15 +24,23 @@ gem 'rails_log_profiling', '~> 0.1.0.beta2', :group => "development"
 ```
 
 ## Usage
-  Rails::Log::Profilingは初期の段階ではなにも行いません、動作させるには
-config/environments/development.rbに下記の設定を追加してください
+  Rails::Log::Profilingは初期の段階ではなにも行いません
 
-  ```:devlopment.rb
-  Rails::Log::Profiling.enable = true
-  ```
+  動作させるにはconfig/environments/development.rbに下記の設定を追加してください
 
-  設定後、Rails Serverを起動
-  log/以下に**rails_log_query_profiling.log**と**rails_log_view_profiling.log**、２つのログファイルが作られ、記録されます
+```:devlopment.rb
+# クエリのプロファイリングを有効にします
+Rails::Log::Profiling.query_profiling_enable = true
+# viewのプロファイリングを有効にします
+Rails::Log::Profiling.view_profiling_enable = true
+```
+
+設定後、Rails Serverを起動
+  log/以下に
+  - **rails_log_query_profiling.log**
+  - **rails_log_view_profiling.log**
+
+２つのログファイルが作られ、記録されます
 
 ```
 $ tail -f log/rails_log_query_profiling.log
@@ -66,7 +74,8 @@ Children: total time: 4.2ms, partial page count: 3
 
 ## Configuration
 Rails::Log::Profilingはオプションが用意されています
-  - `Rails::Log::Profiling.enable`： true => Rails::Log::Profilingを有効にする
+  - `Rails::Log::Profiling.query_profiling_enable`： true => クエリのプロファイリングを有効にする
+  - `Rails::Log::Profiling.view_profiling_enable`： true => viewのプロファイリングを有効にする
   - `Rails::Log::Profiling.sort_order`: rails_log_query_profiling.logのクエリの並び順を指定する、降順はdesc、昇順はascと設定してください。初期設定はdescになっています
 
 ## Inspire
