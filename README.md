@@ -52,7 +52,7 @@ $ tail -f log/rails_log_query_profiling.log
   Identify Query Location:
     /Users/fukumone/private_repo/rails_test/app/views/posts/index.html.erb:16:in `_app_views_posts_index_html_erb___3552777926492285037_70120244729720'
 
-  2: CurationType Load (0.4ms)  SELECT  `articles`.* FROM `articles` ORDER BY `articles`.`id` ASC LIMIT 1
+  2: Article Load (0.4ms)  SELECT  `articles`.* FROM `articles` ORDER BY `articles`.`id` ASC LIMIT 1
   Identify Query Location:
     /Users/fukumone/private_repo/rails_test/app/controllers/posts_controller.rb:9:in `index'
 ```
