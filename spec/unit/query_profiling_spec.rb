@@ -2,22 +2,12 @@ require "spec_helper"
 
 describe Rails::Log::Profiling::QueryProfiling do
   before do
-    require 'fileutils'
-    current_path = `pwd`.chomp
-    @log_file = current_path + '/rails_log_query_profiling.log'
-    @file = File.open(@log_file, 'a+')
-
-    Rails::Log::Profiling.query_logger = ActiveSupport::Logger.new @file
-    @file.binmode
-    @file.sync = true
-
     [10, 100, 500, 3].each do |val|
       Rails::Log::Profiling.sqls << [ val, "test" ]
     end
   end
 
   after do
-    File.delete(@log_file)
     Rails::Log::Profiling.sqls.clear
   end
 
