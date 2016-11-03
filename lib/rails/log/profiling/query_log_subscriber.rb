@@ -32,7 +32,8 @@ module Rails::Log::Profiling
         sql  = color(sql, sql_color(sql), true)
 
         if !name.match(/.*ActiveRecord::SchemaMigration.*/) && name.match(/.*Load.\(.*ms\).*/)
-          Rails::Log::Profiling.sqls << [ "#{event.duration.round(1)}".to_f, " #{name}  #{sql}#{binds}\n#{locations}"]
+          Rails::Log::Profiling.total_sql_time += event.duration.round(1)
+          Rails::Log::Profiling.sqls << [ event.duration.round(1), " #{name}  #{sql}#{binds}\n#{locations}"]
         end
       end
 
@@ -60,7 +61,8 @@ module Rails::Log::Profiling
         end
 
         if !name.match(/.*ActiveRecord::SchemaMigration.*/) && name.match(/.*Load.\(.*ms\).*/)
-          Rails::Log::Profiling.sqls << [ "#{event.duration.round(1)}".to_f, " #{name}  #{sql}#{binds}\n #{locations}" ]
+          Rails::Log::Profiling.total_sql_time += event.duration.round(1)
+          Rails::Log::Profiling.sqls << [ event.duration.round(1), " #{name}  #{sql}#{binds}\n #{locations}" ]
         end
       end
 

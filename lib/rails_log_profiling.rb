@@ -27,6 +27,10 @@ module Rails
         []
       end
 
+      config_accessor :total_sql_time, instance_accessor: false do
+        0
+      end
+
       config_accessor :sort_order, instance_accessor: false do
         "desc"
       end
