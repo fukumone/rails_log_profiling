@@ -4,23 +4,23 @@
 [![Gem Version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=rb&type=6&v=0.1.0.beta3&x3=0)](https://d25lcipzij17d.cloudfront.net/badge.svg?id=rb&type=6&v=0.1.0.beta3&x3=0)
 
 Rails専用のパフォーマンスツール
- - クエリ、レンダリング、viewごとにかかった時間をそれぞれログに整理して記録する
- - クエリプロファイリング：クエリを整理してログに出力、またsqlのクエリの実行箇所を出力
- - Viewプロファイリング：view、レンダリングにかかったページに整理してログに出力
- - 対応version Rails4.0, 4.1, 4.2, 5.0
+ - クエリ、viewレンダリングにかかった時間をログに計測して記録
+ - クエリプロファイリング：１リクエストごとにクエリを昇順または降順に整理してログに出力、またsqlのクエリの実行箇所を記録
+ - Viewプロファイリング：１リクエストごとにviewレンダリングにかかったページをログに計測して記録
+ - 対応version：Rails4.0, 4.1, 4.2, 5.0
 
 ## Installation
 
 - gemとしてインストール
 
 ```
-$ gem install rails_log_profiling -v 0.1.0.beta2 --pre
+$ gem install rails_log_profiling -v 0.1.0.beta3 --pre
 ```
 
 - gemfileに追加
 
 ```
-gem 'rails_log_profiling', '~> 0.1.0.beta2', :group => "development"
+gem 'rails_log_profiling', '~> 0.1.0.beta3', :group => "development"
 ```
 
 ## Usage
