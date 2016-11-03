@@ -46,31 +46,28 @@ Rails::Log::Profiling.view_profiling_enable = true
 $ tail -f log/rails_log_query_profiling.log
 
 # output
-  PostsController#index
-
   2件のクエリの検知
 
-  1:  Post Load (3.7ms)  SELECT `posts`.* FROM `posts`
- Identify Query Location::
- /Users/fukumone/rails_test/app/views/posts/index.html.erb:16:in `_app_views_posts_index_html_erb___191904507552904544_70102088595360'
+  1: Post Load (0.5ms)  SELECT `posts`.* FROM `posts`
+  Identify Query Location:
+    /Users/fukumone/private_repo/rails_test/app/views/posts/index.html.erb:16:in `_app_views_posts_index_html_erb___3552777926492285037_70120244729720'
 
-
-  2:  CurationType Load (1.4ms)  SELECT  `curation_types`.* FROM `curation_types` ORDER BY `curation_types`.`id` ASC LIMIT 1
- Identify Query Location::
- /Users/fukumone/rails_test/app/controllers/posts_controller.rb:9:in `index'
+  2: CurationType Load (0.4ms)  SELECT  `articles`.* FROM `articles` ORDER BY `articles`.`id` ASC LIMIT 1
+  Identify Query Location:
+    /Users/fukumone/private_repo/rails_test/app/controllers/posts_controller.rb:9:in `index'
 ```
 
 ```
 $ tail -f log/rails_log_view_profiling.log
 
 # output
-Parent: 85.5ms
-  /Users/torufukui/private_repo/rails_test/app/views/posts/index.html.erb
-Children: total time: 5.3ms, partial page count: 3, total rendering page count: 12
-  3.6ms: /Users/torufukui/private_repo/rails_test/app/views/articles/_show.html.erb
+Parent: 65.5ms
+  /Users/fukumone/private_repo/rails_test/app/views/posts/index.html.erb
+Children: total time: 6.9ms, partial page count: 3, total rendering page count: 12
+  5.4ms: /Users/fukumone/private_repo/rails_test/app/views/articles/_show.html.erb
     rendering page count: 10
-  0.9ms: /Users/torufukui/private_repo/rails_test/app/views/articles/_show_2.html.erb
-  0.8ms: /Users/torufukui/private_repo/rails_test/app/views/articles/_show_3.html.erb
+  0.8ms: /Users/fukumone/private_repo/rails_test/app/views/articles/_show_3.html.erb
+  0.7ms: /Users/fukumone/private_repo/rails_test/app/views/articles/_show_2.html.erb
 ```
 
 ## Configuration
