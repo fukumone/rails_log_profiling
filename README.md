@@ -64,12 +64,13 @@ $ tail -f log/rails_log_query_profiling.log
 $ tail -f log/rails_log_view_profiling.log
 
 # output
-Parent: 40.2ms
-  /Users/fukumone/rails_test/app/views/posts/index.html.erb
-Children: total time: 4.2ms, partial page count: 3
-  2.3ms: /Users/fukumone/rails_test/app/views/articles/_show.html.erb
-  1.2ms: /Users/fukumone/rails_test/app/views/articles/_show_3.html.erb
-  0.7ms: /Users/fukumone/rails_test/app/views/articles/_show_2.html.erb
+Parent: 85.5ms
+  /Users/torufukui/private_repo/rails_test/app/views/posts/index.html.erb
+ Children: total time: 5.3ms, partial page count: 3, total rendering page count: 12
+  3.6ms: /Users/torufukui/private_repo/rails_test/app/views/articles/_show.html.erb
+    rendering page count: 10
+  0.9ms: /Users/torufukui/private_repo/rails_test/app/views/articles/_show_2.html.erb
+  0.8ms: /Users/torufukui/private_repo/rails_test/app/views/articles/_show_3.html.erb
 ```
 
 ## Configuration

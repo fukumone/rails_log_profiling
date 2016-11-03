@@ -32,20 +32,40 @@ module Rails::Log::Profiling
 
       def view_logger_info
         log = "\n \033[36mParent: #{Rails::Log::Profiling.rendering_pages[:parent][0]}ms \033[0m\n  #{Rails::Log::Profiling.rendering_pages[:parent][1]}"
-        unless Rails::Log::Profiling.rendering_pages[:children].empty?
+        children = Rails::Log::Profiling.rendering_pages[:children]
+
+        unless children.empty?
           log += "\n"
           temp= true
           partial_total_time = 0
-          Rails::Log::Profiling.rendering_pages[:children].each do |val|
+          rendering_pages_count = 0
+          children.each do |val|
             partial_total_time += val[1][:rendering_time]
+            rendering_pages_count += val[1][:partial_count]
           end
 
-          Rails::Log::Profiling.rendering_pages[:children].each do |child|
+          children.each do |child|
             if temp
-              log += " \033[36mChildren: total time: #{partial_total_time}ms, partial page count: #{Rails::Log::Profiling.rendering_pages[:children].count}\033[0m\n  \033[36m#{child[1][:rendering_time]}ms:\033[0m #{child[0]}"
+              if child[1][:partial_count] > 1
+                log += " \033[36mChildren: total time: #{partial_total_time}ms, "
+                log += "partial page count: #{children.count}, "
+                log += "total rendering page count: #{rendering_pages_count}\033[0m\n  "
+                log += "\033[36m#{child[1][:rendering_time]}ms:\033[0m #{child[0]}\n"
+                log += "    \033[36mrendering page count: #{child[1][:partial_count]}\033[0m"
+              else
+                log += " \033[36mChildren: total time: #{partial_total_time}ms, "
+                log += "partial page count: #{children.count}, "
+                log += "total rendering page count: #{rendering_pages_count}\033[0m\n  "
+                log += "\033[36m#{child[1][:rendering_time]}ms:\033[0m #{child[0]}"
+              end
               temp = false
             else
-              log += "\n  \033[36m#{child[1][:rendering_time]}ms:\033[0m #{child[0]}"
+              if child[1][:partial_count] > 1
+                log += "\n  \033[36m#{child[1][:rendering_time]}ms:\033[0m #{child[0]}\n"
+                log += "    \033[36mrendering page count: #{child[1][:partial_count]}\033[0m"
+              else
+                log += "\n  \033[36m#{child[1][:rendering_time]}ms:\033[0m #{child[0]}"
+              end
             end
           end
         end
