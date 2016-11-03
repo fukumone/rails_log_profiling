@@ -66,7 +66,7 @@ $ tail -f log/rails_log_view_profiling.log
 # output
 Parent: 85.5ms
   /Users/torufukui/private_repo/rails_test/app/views/posts/index.html.erb
- Children: total time: 5.3ms, partial page count: 3, total rendering page count: 12
+Children: total time: 5.3ms, partial page count: 3, total rendering page count: 12
   3.6ms: /Users/torufukui/private_repo/rails_test/app/views/articles/_show.html.erb
     rendering page count: 10
   0.9ms: /Users/torufukui/private_repo/rails_test/app/views/articles/_show_2.html.erb
