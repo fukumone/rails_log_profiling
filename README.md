@@ -46,7 +46,9 @@ Rails::Log::Profiling.view_profiling_enable = true
 $ tail -f log/rails_log_query_profiling.log
 
 # output
-2件のクエリの検知, total query time: 26.6ms
+PostsController#index
+
+total query count: 2, total query time: 26.6ms
 
   1: Articles Load (21.7ms)  SELECT  `articles`.* FROM `articles` ORDER BY `articles`.`id` ASC LIMIT 1
   Identify Query Location:
@@ -54,7 +56,7 @@ $ tail -f log/rails_log_query_profiling.log
 
   2: Post Load (4.9ms)  SELECT `posts`.* FROM `posts`
   Identify Query Location:
-    /Users/fukumone/private_repo/rails_test/app/views/posts/index.html.erb:16:in `_app_views_posts_index_html_erb__3476269730194822991_70352062040540'```
+    /Users/fukumone/private_repo/rails_test/app/views/posts/index.html.erb:16:in `_app_views_posts_index_html_erb__3476269730194822991_70352062040540'
 ```
 
 ```
