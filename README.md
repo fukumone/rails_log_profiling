@@ -1,7 +1,7 @@
 # Rails::Log::Profiling
 
 ![Build Status](https://travis-ci.org/fukumone/rails_log_profiling.svg)
-[![Gem Version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=rb&type=6&v=0.1.0.beta3&x3=0)](https://d25lcipzij17d.cloudfront.net/badge.svg?id=rb&type=6&v=0.1.0.beta3&x3=0)
+[![Gem Version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=rb&type=6&v=0.1.0.beta4&x4=0)](https://d25lcipzij17d.cloudfront.net/badge.svg?id=rb&type=6&v=0.1.0.beta4&x4=0)
 
 Rails専用のパフォーマンスツール
  - クエリ、viewレンダリングにかかった時間をログに計測して記録
@@ -14,13 +14,13 @@ Rails専用のパフォーマンスツール
 - gemとしてインストール
 
 ```
-$ gem install rails_log_profiling -v 0.1.0.beta3 --pre
+$ gem install rails_log_profiling -v 0.1.0.beta4 --pre
 ```
 
 - gemfileに追加
 
 ```
-gem 'rails_log_profiling', '~> 0.1.0.beta3', :group => "development"
+gem 'rails_log_profiling', '~> 0.1.0.beta4', :group => "development"
 ```
 
 ## Usage
@@ -46,15 +46,15 @@ Rails::Log::Profiling.view_profiling_enable = true
 $ tail -f log/rails_log_query_profiling.log
 
 # output
-  2件のクエリの検知
+2件のクエリの検知, total query time: 26.6ms
 
-  1: Post Load (0.5ms)  SELECT `posts`.* FROM `posts`
-  Identify Query Location:
-    /Users/fukumone/private_repo/rails_test/app/views/posts/index.html.erb:16:in `_app_views_posts_index_html_erb___3552777926492285037_70120244729720'
-
-  2: Article Load (0.4ms)  SELECT  `articles`.* FROM `articles` ORDER BY `articles`.`id` ASC LIMIT 1
+  1: Articles Load (21.7ms)  SELECT  `articles`.* FROM `articles` ORDER BY `articles`.`id` ASC LIMIT 1
   Identify Query Location:
     /Users/fukumone/private_repo/rails_test/app/controllers/posts_controller.rb:9:in `index'
+
+  2: Post Load (4.9ms)  SELECT `posts`.* FROM `posts`
+  Identify Query Location:
+    /Users/fukumone/private_repo/rails_test/app/views/posts/index.html.erb:16:in `_app_views_posts_index_html_erb__3476269730194822991_70352062040540'```
 ```
 
 ```
@@ -75,6 +75,7 @@ Rails::Log::Profilingはオプションが用意されています
   - `Rails::Log::Profiling.query_profiling_enable`： true => クエリのプロファイリングを有効にする
   - `Rails::Log::Profiling.view_profiling_enable`： true => viewのプロファイリングを有効にする
   - `Rails::Log::Profiling.sort_order`: rails_log_query_profiling.logのクエリの並び順を指定する、降順はdesc、昇順はascと設定してください。初期設定はdescになっています
+  - `Rails::Log::Profiling.continue_to_query_caller`： true => rails_log_query_profiling.logにてクエリメソッドの呼び出し状況を最後までトレースし記録します、探知する量が多くなってしまう場合があるため、初期設定はfalseになっています
 
 ## Inspire
  - [rack-mini-profiler](https://github.com/MiniProfiler/rack-mini-profiler)

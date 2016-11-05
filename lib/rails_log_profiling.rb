@@ -42,6 +42,12 @@ module Rails
       config_accessor :rendering_pages, instance_accessor: false do
         { parent: "", children: {} }
       end
+
+      # メソッドの呼び出し状況を制御する
+      # 再帰的に探索するため、探知する量が多くなってしまう場合があるため、デフォルトは一回で止める
+      config_accessor :continue_to_query_caller, instance_accessor: false do
+        false
+      end
     end
   end
 end
