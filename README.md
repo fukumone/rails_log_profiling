@@ -79,6 +79,9 @@ Rails::Log::Profilingはオプションが用意されています
   - `Rails::Log::Profiling.sort_order`: rails_log_query_profiling.logのクエリの並び順を指定する、降順はdesc、昇順はascと設定してください。初期設定はdescになっています
   - `Rails::Log::Profiling.continue_to_query_caller`： true => rails_log_query_profiling.logにてクエリメソッドの呼び出し状況を最後までトレースし記録します、探知する量が多くなってしまう場合があるため、初期設定はfalseになっています
 
+## ChangeLog
+[here](https://github.com/fukumone/rails_log_profiling/blob/master/CHANGELOG.md)
+
 ## Inspire
  - [rack-mini-profiler](https://github.com/MiniProfiler/rack-mini-profiler)
  - [Activerecord::Cause](https://github.com/joker1007/activerecord-cause)
