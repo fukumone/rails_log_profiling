@@ -15,6 +15,7 @@ module Rails::Log::Profiling
       identifier = event.payload[:identifier]
       if Rails::Log::Profiling.rendering_pages[:children].has_key?(identifier)
         Rails::Log::Profiling.rendering_pages[:children][identifier][:partial_count] += 1
+        Rails::Log::Profiling.rendering_pages[:children][identifier][:rendering_time] += event.duration.round(1)
       else
         Rails::Log::Profiling.rendering_pages[:children][identifier] = { rendering_time: event.duration.round(1), partial_count: 1 }
       end
