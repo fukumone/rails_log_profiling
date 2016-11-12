@@ -1,7 +1,7 @@
 # Rails::Log::Profiling
 
 ![Build Status](https://travis-ci.org/fukumone/rails_log_profiling.svg)
-[![Gem Version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=rb&type=6&v=0.1.0.beta4&x4=0)](https://d25lcipzij17d.cloudfront.net/badge.svg?id=rb&type=6&v=0.1.0.beta4&x4=0)
+[![Gem Version](https://d25lcipzij17d.cloudfront.net/badge.svg?id=rb&type=6&v=0.1.0&x4=0)](https://d25lcipzij17d.cloudfront.net/badge.svg?id=rb&type=6&v=0.1.0&x4=0)
 
 Rails専用のパフォーマンスツール
  - クエリ、viewレンダリングにかかった時間をログに計測して記録
@@ -14,13 +14,13 @@ Rails専用のパフォーマンスツール
 - gemとしてインストール
 
 ```
-$ gem install rails_log_profiling -v 0.1.0.beta4 --pre
+$ gem install rails_log_profiling
 ```
 
 - gemfileに追加
 
 ```
-gem 'rails_log_profiling', '~> 0.1.0.beta4', :group => "development"
+gem 'rails_log_profiling', :group => "development"
 ```
 
 ## Usage
