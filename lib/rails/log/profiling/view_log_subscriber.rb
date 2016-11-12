@@ -13,20 +13,22 @@ module Rails::Log::Profiling
 
     def render_partial(event)
       identifier = event.payload[:identifier]
-      if Rails::Log::Profiling.rendering_pages[:children].has_key?(identifier)
-        Rails::Log::Profiling.rendering_pages[:children][identifier][:partial_count] += 1
+      children = Rails::Log::Profiling.rendering_pages[:children]
+      if children.has_key?(identifier)
+        children[identifier][:partial_count] += 1
       else
-        Rails::Log::Profiling.rendering_pages[:children][identifier] = { rendering_time: event.duration.round(1), partial_count: 1 }
+        children[identifier] = { rendering_time: event.duration.round(1), partial_count: 1 }
       end
     end
 
     private
       def children_sort
-        unless Rails::Log::Profiling.rendering_pages[:children].empty?
-          sort_array = Rails::Log::Profiling.rendering_pages[:children].to_a.sort! { |a, b| b[1][:rendering_time] <=> a[1][:rendering_time] }
+        children = Rails::Log::Profiling.rendering_pages[:children]
+        unless children.empty?
+          sort_array = children.to_a.sort! { |a, b| b[1][:rendering_time] <=> a[1][:rendering_time] }
           # ソートした値を入れ替えるため一旦クリアにする
-          Rails::Log::Profiling.rendering_pages[:children].clear
-          Rails::Log::Profiling.rendering_pages[:children] = sort_array.to_h
+          children.clear
+          children = sort_array.to_h
         end
       end
 
